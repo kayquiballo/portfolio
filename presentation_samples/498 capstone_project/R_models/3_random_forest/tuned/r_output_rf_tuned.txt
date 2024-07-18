@@ -1,0 +1,37 @@
+> train2 <- na.omit(inputData[,c("log_engagement_index","locale","regions","pef2",
++                                "sector2","Semester","pct_black.hispanic",
++                                "pct_free.reduced","pp_total_raw")])
+> View(train2)
+> t <- tuneRF(train2[,-1], train2[,1],
++             stepFactor = 0.5,
++             plot = TRUE,
++             ntreeTry = 150,
++             trace = TRUE,
++             improve = 0.05)
+mtry = 2  OOB error = 6.50023 
+Searching left ...
+mtry = 4 	OOB error = 6.774974 
+-0.04226687 0.05 
+Searching right ...
+mtry = 1 	OOB error = 6.551135 
+-0.007831342 0.05 
+
+=================================================
+VARIABLE IMPORTANCE - reference the plot
+
+> importance(rf)
+                   IncNodePurity
+locale                  414.2339
+regions                 430.4845
+pef2                    503.4345
+sector2                 404.8261
+Semester                566.0981
+pct_black.hispanic      409.8437
+pct_free.reduced        572.1560
+pp_total_raw           1005.3107
+
+===============================================
+
+#RMSE
+sqrt( mean( (testData[!is.na(testData$log_engagement_index),]$log_engagement_index-predict(rf, testData[!is.na(testData$log_engagement_index),]))^2 , na.rm = TRUE ) )
+# returns 2.718192

@@ -1,0 +1,51 @@
+> summary(dtree)
+Call:
+rpart(formula = formula, data = inputData, method = "class", 
+    control = rpart.control(minsplit = 30, cp = 0.001))
+  n=11853 (3717 observations deleted due to missingness)
+
+           CP nsplit rel error    xerror        xstd
+1 0.002916702      0 1.0000000 1.0000000 0.001191024
+2 0.001772898      1 0.9970833 0.9974264 0.001277283
+3 0.001115210      4 0.9917646 0.9941666 0.001378237
+4 0.001086615      5 0.9906494 0.9906494 0.001478776
+5 0.001029424      8 0.9873896 0.9906494 0.001478776
+6 0.001000000     10 0.9853307 0.9898773 0.001499850
+
+Variable importance
+       relevel(as.factor(regions), ref = "Midwest")                                        pp_total_raw 
+                                                 36                                                  20 
+                                   pct_free.reduced          relevel(as.factor(locale), ref = "Suburb") 
+                                                 19                                                  17 
+relevel(as.factor(Semester), ref = "Winter_Spring")                                  pct_black.hispanic 
+                                                  5                                                   4 
+
+Node number 1: 11853 observations,    complexity param=0.002916702
+  predicted class=-2.99573227355399  expected loss=0.9834641  P(node) =1
+
+
+
+===================================================================
+
+> printcp(dtree)
+
+Classification tree:
+rpart(formula = formula, data = inputData, method = "class", 
+    control = rpart.control(minsplit = 30, cp = 0.001))
+
+Variables actually used in tree construction:
+[1] pct_free.reduced                                    pp_total_raw                                       
+[3] relevel(as.factor(locale), ref = "Suburb")          relevel(as.factor(regions), ref = "Midwest")       
+[5] relevel(as.factor(Semester), ref = "Winter_Spring")
+
+Root node error: 11657/11853 = 0.98346
+
+n=11853 (3717 observations deleted due to missingness)
+
+         CP nsplit rel error  xerror      xstd
+1 0.0029167      0   1.00000 1.00000 0.0011910
+2 0.0017729      1   0.99708 0.99743 0.0012773
+3 0.0011152      4   0.99176 0.99417 0.0013782
+4 0.0010866      5   0.99065 0.99065 0.0014788
+5 0.0010294      8   0.98739 0.99065 0.0014788
+6 0.0010000     10   0.98533 0.98988 0.0014999
